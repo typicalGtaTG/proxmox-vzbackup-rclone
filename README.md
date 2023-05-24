@@ -1,4 +1,4 @@
-# proxmox-vzbackup-rclone
+# proxmox-backup-rclone
 
 This is a vzbackup hook script that backups up your proxmox vms, containers and pve configs to remote storage such as google drive using proxmox's native vzbackup tool and rclone.
 
@@ -21,13 +21,13 @@ When setting up the encryption, I DO NOT reccomend you encrypt the filenames and
 ```
 apt-get install git
 cd /root
-git clone https://github.com/Marko298/proxmox-vzbackup-rclone.git
+git clone https://github.com/typicalGtaTG/proxmox-backup-rclone.git
 chmod +x /root/proxmox-vzbackup-rclone/vzbackup-rclone.sh
 ```
 
 3. Edit vzbackup-rclone.sh and set both `$dumpdir` and `$MAX_AGE` at the top of the file. 
 
-4. Open /etc/vzdump.conf, uncomment the `script:` line and set that to `/root/proxmox-vzbackup-rclone/vzbackup-rclone.sh`:
+4. Open /etc/vzdump.conf, uncomment the `script:` line and set that to `/root/proxmox-backup-rclone/vzbackup-rclone.sh`:
 ```
 script:/root/proxmox-vzbackup-rclone/vzbackup-rclone.sh
 ```
@@ -87,8 +87,8 @@ TASK OK
 
 ## Rehydrate (restore) old backups
 
-At some point, it'll be very likely that you'll need to pull old backups from your rclone remote that have been removed from the local proxmox server. This can be done by passing the `rehydrate` parameter to the vzbackup-rclone.sh script:
-`$ ~/proxmox-vzbackup-rclone/vzbackup-rclone.sh rehydrate`
+At some point, it'll be very likely that you'll need to pull old backups from your rclone remote that have been removed from the local proxmox server. This can be done by passing the `rehydrate` parameter to the backup-rclone.sh script:
+`$ ~/proxmox-backup-rclone/vzbackup-rclone.sh rehydrate YYYY-MM-24`
 ```
 Please enter the date you want to rehydrate in the following format: YYYY/MM/DD
 For example, today would be: 2020/06/02
